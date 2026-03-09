@@ -23,7 +23,7 @@
     <main class="submit-container">
         <div class="submit-card glass-card">
             <h1 class="submit-title">Share Your Memory</h1>
-            <p class="submit-subtitle">Write a heartfelt message. Minimum 600 words required.</p>
+            <p class="submit-subtitle">Write a heartfelt message. Minimum 200 words required.</p>
 
             <form id="memoryForm" class="memory-form">
                 <div class="form-group">
@@ -53,12 +53,12 @@
 
                 <div class="form-group">
                     <label for="message">Message About Me</label>
-                    <textarea id="message" name="message" rows="15" placeholder="Write your memory here... (Minimum 600 words)" required></textarea>
+                    <textarea id="message" name="message" rows="15" placeholder="Write your memory here... (Minimum 200 words)" required></textarea>
                     <div class="word-counter">
-                        <span id="wordCount">0</span> / 600 words minimum
+                        <span id="wordCount">0</span> / 200 words minimum
                     </div>
                     <p class="validation-error" id="wordError" style="display: none;">
-                        ⚠️ Message must contain at least 600 words.
+                        ⚠️ Message must contain at least 200 words.
                     </p>
                 </div>
 
@@ -90,5 +90,6 @@
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
+
 
 
