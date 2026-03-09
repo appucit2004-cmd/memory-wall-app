@@ -87,7 +87,7 @@ function initMemoryForm() {
             wordCountEl.textContent = words;
 
             if (wordErrorEl) {
-                if (words >= 2000) {
+                if (words >= 200) {
                     wordErrorEl.style.display = 'none';
                     wordCountEl.parentElement.classList.add('valid');
                 } else {
@@ -163,3 +163,4 @@ function initScrollAnimations() {
 
     cards.forEach(card => observer.observe(card));
 }
+
