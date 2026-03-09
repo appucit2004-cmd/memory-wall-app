@@ -9,6 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
     initScrollAnimations();
 });
 
+const MIN_WORDS = 200;
+
 // ========== Photo Upload with Preview ==========
 function initPhotoUpload() {
     const photoInput = document.getElementById('photo');
@@ -79,32 +81,45 @@ function initMemoryForm() {
 
     if (!form) return;
 
+    function getWordCount(text) {
+        const t = (text || '').trim();
+        return t ? t.split(/\s+/).filter(w => w.length > 0).length : 0;
+    }
+
+    function updateWordUI() {
+        const words = getWordCount(messageInput?.value);
+
+        if (wordCountEl) wordCountEl.textContent = words;
+
+        if (wordErrorEl) {
+            if (words >= MIN_WORDS) {
+                wordErrorEl.style.display = 'none';
+                wordCountEl?.parentElement?.classList.add('valid');
+            } else {
+                wordErrorEl.style.display = words > 0 ? 'block' : 'none';
+                wordCountEl?.parentElement?.classList.remove('valid');
+            }
+        }
+
+        if (submitBtn) submitBtn.disabled = words < MIN_WORDS;
+    }
+
+    // Set initial state on load
+    updateWordUI();
+
     // Word counter
     if (messageInput && wordCountEl) {
         messageInput.addEventListener('input', () => {
-            const text = messageInput.value.trim();
-            const words = text ? text.split(/\s+/).filter(w => w.length > 0).length : 0;
-            wordCountEl.textContent = words;
-
-            if (wordErrorEl) {
-                if (words >= 200) {
-                    wordErrorEl.style.display = 'none';
-                    wordCountEl.parentElement.classList.add('valid');
-                } else {
-                    wordErrorEl.style.display = words > 0 ? 'block' : 'none';
-                    wordCountEl.parentElement.classList.remove('valid');
-                }
-            }
+            updateWordUI();
         });
     }
 
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
 
-        const message = messageInput?.value?.trim() || '';
-        const words = message ? message.split(/\s+/).filter(w => w.length > 0).length : 0;
+        const words = getWordCount(messageInput?.value);
 
-        if (words < 2000) {
+        if (words < MIN_WORDS) {
             if (wordErrorEl) wordErrorEl.style.display = 'block';
             messageInput?.focus();
             return;
@@ -163,4 +178,3 @@ function initScrollAnimations() {
 
     cards.forEach(card => observer.observe(card));
 }
-
