@@ -107,8 +107,8 @@ def submit():
             errors.append('Message is required.')
         
         word_count = count_words(message)
-        if word_count < 2000:
-            errors.append(f'Message must contain at least 2000 words. Current: {word_count} words.')
+        if word_count < 200:
+            errors.append(f'Message must contain at least 200 words. Current: {word_count} words.')
         
         if not photo or photo.filename == '':
             errors.append('Photo is required.')
