@@ -6,7 +6,7 @@ A modern, private digital memory diary web application where people can submit h
 
 - **Loading Page** - Animated intro when website opens
 - **Landing Page** - Beautiful gradient design with glassmorphism
-- **Memory Submission** - Name, photo upload, message (min 2000 words)
+- **Memory Submission** - Name, photo upload, message (min 200 words)
 - **Admin Login** - Secure access to view memories
 - **Admin Dashboard** - View, search, and delete memories
 - **Private** - Visitors cannot see other people's submissions
